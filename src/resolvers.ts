@@ -14,10 +14,10 @@ export const resolvers = {
   },
   Mutation: {
     createPost: async (
-      parent: any,
+      _parent: any,
       args: { post: { title: string; description: string } },
-      context: any,
-      info: any
+      _context: any,
+      _info: any
     ) => {
       // 引数のargsはpostの中に存在している
       const { title, description } = args.post;
@@ -25,5 +25,45 @@ export const resolvers = {
       await post.save();
       return post;
     },
+    deletePost: async (
+      _parent: any,
+      args: { id: any },
+      _context: any,
+      _info: any
+    ) => {
+      const { id } = args;
+      await Post.findByIdAndDelete(id);
+      // const res = await Post.findByIdAndDelete(id);
+      // console.dir(res);
+      // resの中身
+      // model {
+      //   '$__': InternalCache {
+      //     activePaths: StateMachine {
+      //       paths: [Object],
+      //       states: [Object],
+      //       stateNames: [Array]
+      //     },
+      //     strictMode: true,
+      //     skipId: true,
+      //     _id: ObjectId { [Symbol(id)]: [Buffer [Uint8Array]] }
+      //   },
+      //   '$isNew': false,
+      //   _doc: {
+      //     _id: ObjectId { [Symbol(id)]: [Buffer [Uint8Array]] },
+      //     title: '2回目のタイトル',
+      //     description: '2回目の内容',
+      //     __v: 0
+      //   }
+      // }
+
+      return "削除完了!!";
+    },
   },
 };
+
+// delete実行後
+// {
+//   "data": {
+//     "deletePost": "削除完了!!"
+//   }
+// }
