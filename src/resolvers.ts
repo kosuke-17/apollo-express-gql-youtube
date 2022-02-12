@@ -58,6 +58,17 @@ export const resolvers = {
 
       return "削除完了!!";
     },
+    updatePost: async (
+      _parent: any,
+      args: { post?: any; id?: any },
+      _context: any,
+      _info: any
+    ) => {
+      const { id } = args;
+      const { title, description } = args.post;
+      const post = await Post.findByIdAndUpdate(id, { title, description });
+      return post;
+    },
   },
 };
 
@@ -65,5 +76,15 @@ export const resolvers = {
 // {
 //   "data": {
 //     "deletePost": "削除完了!!"
+//   }
+// }
+// update実行後
+// {
+//   "data": {
+//     "updatePost": {
+//       "id": "62072ca6b1d8b124a1ba0392",
+//       "title": "初めてのタイトル",
+//       "description": "初めての内容"
+//     }
 //   }
 // }

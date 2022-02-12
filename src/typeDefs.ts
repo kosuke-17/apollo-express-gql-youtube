@@ -37,10 +37,11 @@ export const typeDefs = gql`
   type Mutation {
     createPost(post: PostInput): Post
     deletePost(id: ID): String
-    # updatePost(post: PostInput): Post
+    updatePost(id: ID, post: PostInput): Post
   }
 `;
 
+// 追加、削除、更新の処理
 // mutation {
 //   createPost(post: {
 //       title:"初めてのタイトル"
@@ -50,4 +51,13 @@ export const typeDefs = gql`
 //       title
 //       description
 //     }
+//  deletePost(id:"62072d1fc0d5895b8695d8c4")
+//   updatePost(id:"62072ca6b1d8b124a1ba0392", post:{
+//     title: "初めてのタイトルをアップデート"
+//     description: "初めての内容をアップデート"
+//   }) {
+//     id
+//     title
+//     description
+//   }
 // }
