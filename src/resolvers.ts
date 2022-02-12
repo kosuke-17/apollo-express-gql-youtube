@@ -66,7 +66,15 @@ export const resolvers = {
     ) => {
       const { id } = args;
       const { title, description } = args.post;
-      const post = await Post.findByIdAndUpdate(id, { title, description });
+      const updates = { title: "", description: "" };
+      if (title !== undefined) {
+        updates.title = title;
+      }
+      if (description !== undefined) {
+        updates.description = description;
+      }
+      // からだったらnullに更新されないようにupdatesを作成s
+      const post = await Post.findByIdAndUpdate(id, updates, { new: true });
       return post;
     },
   },
