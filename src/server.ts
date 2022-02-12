@@ -28,7 +28,7 @@ async function startServer() {
   await apoloServer.start();
 
   // ミドルウェアとしてexpressサーバーを活用し適応
-  apoloServer.applyMiddleware({ app: app });
+  apoloServer.applyMiddleware({ app: app, path: "/truly" });
 
   app.use((req, res) => {
     res.send("Hello from express apollo server");
