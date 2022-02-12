@@ -11,4 +11,25 @@ export const typeDefs = gql`
 
     getAllPosts: [Post]
   }
+
+  # mutationで必要な引数の型
+  input PostInput {
+    title: String
+    description: String
+  }
+
+  type Mutation {
+    createPost(post: PostInput): Post
+  }
 `;
+
+// mutation {
+//   createPost(post: {
+//       title:"初めてのタイトル"
+//       description: "初めての内容"
+//     }){
+//       id
+//       title
+//       description
+//     }
+// }
