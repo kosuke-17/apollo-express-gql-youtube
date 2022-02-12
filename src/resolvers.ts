@@ -7,7 +7,10 @@ export const resolvers = {
     getAllPosts: async () => {
       return await Post.find();
     },
-    // getPost: async () => {},
+    // _は利用しないという意味
+    getPost: async (_p: any, { id }: any, _c: any, _i: any) => {
+      return await Post.findById(id);
+    },
   },
   Mutation: {
     createPost: async (
